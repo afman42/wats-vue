@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import $eventHub from '../eventHub'
 
 Vue.use(VueRouter)
 
@@ -8,7 +8,12 @@ const routes: Array<RouteConfig> = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: () => import(/* webpackChunkName: "about" */ '../views/HomeView.vue')
+  },
+  {
+    path: '/history',
+    name: 'history',
+    component: () => import(/* webpackChunkName: "about" */ '../views/HistoryView.vue')
   },
   {
     path: '/about',
@@ -25,5 +30,15 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+router.beforeEach((to, from, next) => {
+    $eventHub.$emit('asyncComponentLoading', to) // Start progress bar
+    setTimeout(() => {
+        next();
+      }, 500)
+})
 
+router.beforeResolve((to, from, next) => {
+    $eventHub.$emit('asyncComponentLoaded') // Stop progress bar
+    next()
+})
 export default router

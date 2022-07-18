@@ -4,7 +4,7 @@
         <div class="column is-half">
             <h2 class="has-text-success has-text-centered">Just Learning Purpose :)</h2>
             <p class="has-text-centered">send whatsapp number store in your smartphone and PC</p>
-            <div class="is-centered columns mt-1">
+            <div class="is-centered columns mt-1 is-mobile px-3">
                 <div class="column">
                     <b-button tag="router-link" to="/" type="is-info" outlined expanded icon-left="home">Home</b-button>
                 </div>

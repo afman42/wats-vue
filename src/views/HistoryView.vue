@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="is-flex is-justify-content-space-between"
+      class="is-flex is-justify-content-space-between px-3 is-mobile"
       :class="history.length == 0 ? 'mb-6' : 'mb-3'"
     >
       <h5 class="has-text-dark">History Message</h5>
